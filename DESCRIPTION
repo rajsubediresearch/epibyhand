@@ -16,11 +16,13 @@ Description: Computes classical epidemiological measures and returns the
     IARC Scientific Publications No. 32).
 License: MIT + file LICENSE
 Encoding: UTF-8
-Depends: R (>= 3.5.0)
+Language: en-GB
+Depends: R (>= 4.0.0)
 Imports:
     stats
 Suggests: testthat (>= 3.0.0), knitr, rmarkdown
 Config/testthat/edition: 3
+VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 URL: https://github.com/rajsubediresearch/epibyhand
