@@ -1,0 +1,203 @@
+---
+title: "Working through a confounded analysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Working through a confounded analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(epibyhand)
+```
+
+Statistical software gives you the answer. In a methods course the answer is
+the least interesting part of the calculation: a student who can produce
+`2.14` without being able to say where it came from has learned nothing that
+will survive the exam.
+
+Every function in this package returns the answer together with the reasoning
+that produced it. This vignette works one dataset the whole way through, in
+roughly the order a first course would, and the derivations are the point
+rather than an aside.
+
+## The data
+
+In 1972--74, a survey in Whickham, England recorded whether each participant
+smoked. Twenty years later the survivors were identified. The data below are
+the 1314 women in that cohort, and they are a standard illustration of
+Simpson's paradox (Appleton, French and Vanderpump, 1996, *The American
+Statistician* **50**, 340--341).
+
+Start where a student would, ignoring everything except smoking and death.
+
+```{r}
+crude <- epi2x2(139, 443, 230, 502,
+                exposure = c("Smoker", "Non-smoker"),
+                outcome  = c("Dead", "Alive"))
+crude
+```
+
+## The crude analysis
+
+```{r}
+odds_ratio(crude)
+```
+
+Three things are worth noticing about that output.
+
+The odds ratio is **0.68**, and the confidence interval excludes 1. Read
+naively, smoking is protective, and significantly so.
+
+The derivation shows the odds in each group separately before dividing them.
+A student who computes `139/443 = 0.31` and stops has done step 1 correctly,
+and telling them "wrong, the answer is 0.68" hides that from both of you.
+
+The note at the bottom appeared without being asked for. Because the data are
+tabulated as a cohort, risk is estimable, so the function reports what the
+risk ratio would be and reminds you that the odds ratio is always the more
+extreme of the two.
+
+Since risks *are* estimable here, compute them directly. There is no need to
+see every step again, so turn the detail down:
+
+```{r}
+options(epibyhand.verbose = 1)
+risk_ratio(crude)
+risk_difference(crude)
+```
+
+Every measure agrees: smokers died less often. A report written at this point
+would be internally consistent, statistically significant, and false.
+
+## Age
+
+Smoking was less common among the oldest women in the survey, and the oldest
+women were the ones most likely to die within twenty years. Age is associated
+with the exposure and independently predicts the outcome, which is the
+definition of a confounder.
+
+```{r}
+smoking <- epi_strata(
+  c(15, 270,  12, 327),
+  c(80, 167,  53, 147),
+  c(44,   6, 165,  28),
+  labels   = c("18-44", "45-64", "65+"),
+  exposure = c("Smoker", "Non-smoker"),
+  outcome  = c("Dead", "Alive")
+)
+smoking
+```
+
+Look at the odds ratio inside each age group before pooling anything:
+
+```{r}
+round(mh_odds_ratio(smoking)$stratum_estimates, 3)
+```
+
+All three are above 1. The crude estimate was 0.68. Adjustment here does not
+shift the estimate — it reverses it.
+
+## Pooling
+
+```{r}
+options(epibyhand.verbose = 2)
+mh_odds_ratio(smoking)
+```
+
+The weights are the part worth dwelling on. `S_i` is what each stratum
+contributes, and the pooled estimate is their weighted average — which is why
+`OR_MH` must land between the smallest and largest stratum estimate. It does,
+at 1.35 between 1.24 and 1.51. The crude estimate of 0.68 does not, and could
+not, because it is not an average of these numbers at all. It is a different
+quantity that happens to be computed from the same table.
+
+The last step prints the crude estimate beside the adjusted one so the
+comparison is arithmetic rather than assertion.
+
+## Was pooling legitimate?
+
+A single pooled odds ratio only means something if one odds ratio underlies
+every stratum. If the strata genuinely differ, the stratifying variable is an
+effect modifier and pooling destroys the finding rather than reporting it.
+
+```{r}
+options(epibyhand.verbose = 1)
+homogeneity(smoking)
+```
+
+The statistic is small and the p-value large, and the per-stratum
+contributions show no single stratum straining against the others. Here the
+assumption is comfortable.
+
+Note the caveat the function prints anyway. A large p-value is not evidence of
+homogeneity: this test has poor power, and with small strata it will fail to
+reject almost regardless of the truth. The stratum-specific estimates you
+looked at earlier remain the more informative thing.
+
+## Attributable fractions
+
+Attributable fractions inherit whatever confounding is present, so computing
+one on the crude table would propagate the error rather than fix it. Work
+inside a stratum instead, where age is held fixed by construction:
+
+```{r}
+middle <- epi2x2(80, 167, 53, 147,
+                 exposure = c("Smoker", "Non-smoker"),
+                 outcome  = c("Dead", "Alive"))
+
+options(epibyhand.verbose = 2)
+attributable_fraction(middle, among = "population")
+```
+
+Three formulas for the population attributable fraction circulate in
+textbooks and students are rarely shown that they are the same quantity. The
+derivation computes all three — directly from risks, by Levin's formula from
+exposure prevalence, and by Miettinen's from the proportion of cases exposed
+— and they agree to the last digit, because they are one number written three
+ways.
+
+## Checking a hand calculation
+
+Give `check_work()` a value and it compares it against the final estimate.
+When that does not match, it searches every intermediate step for one that
+does:
+
+```{r}
+options(epibyhand.verbose = 0)
+d <- odds_ratio(crude)
+
+check_work(d, 0.3137)
+```
+
+The student did not fail; they computed the odds among the exposed and
+stopped. That is a different problem from an arithmetic slip, and it needs a
+different sentence from the person teaching them.
+
+## Building problem sets
+
+`steps_table()` returns the whole derivation as a data frame, which is what
+you want when generating answer keys or rendering the working somewhere this
+package does not reach:
+
+```{r}
+steps_table(mh_odds_ratio(smoking))[, c("symbol", "label", "result")]
+```
+
+Output detail is controlled globally with `options(epibyhand.verbose = )`,
+where `0` prints the result alone, `1` adds the symbolic formulas, and `2`
+shows the full worked solution. Set `epibyhand.digits` to change rounding.
+
+```{r, include = FALSE}
+options(epibyhand.verbose = 2, epibyhand.digits = 4)
+```
+
+## Scope
+
+This package covers methods a student can compute by hand on paper. The
+boundary is deliberate. It is what keeps the package small enough to stay
+correct without constant maintenance, and it is why there is no regression
+modelling here — once the estimate comes from an iterative fit there is no
+hand calculation left to check, and a printed "derivation" would be
+decoration rather than instruction.
