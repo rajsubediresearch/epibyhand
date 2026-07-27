@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "epibyhand: Worked Derivations for Classical Epidemiological Measures"
+version: 0.1.0
+abstract: >-
+  Computes classical epidemiological measures and returns the complete worked
+  derivation alongside the result: every intermediate quantity, the formula,
+  and the formula with the observed numbers substituted in. Intended for
+  teaching, for checking hand calculations, and for generating worked
+  solutions in course materials.
+authors:
+  - family-names: Subedi
+    given-names: Raj
+    email: rajsubediresearch@gmail.com
+repository-code: "https://github.com/rajsubediresearch/epibyhand"
+license: MIT
+keywords:
+  - R
+  - epidemiology
+  - biostatistics
+  - teaching
+  - statistics-education

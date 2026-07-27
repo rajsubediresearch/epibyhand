@@ -1,0 +1,10 @@
+citHeader("To cite epibyhand in publications use:")
+
+bibentry(
+  bibtype  = "Manual",
+  title    = "{epibyhand}: Worked Derivations for Classical Epidemiological Measures",
+  author   = person(given = "Raj", family = "Subedi"),
+  year     = "2026",
+  note     = sprintf("R package version %s", meta$Version),
+  url      = "https://github.com/rajsubediresearch/epibyhand"
+)

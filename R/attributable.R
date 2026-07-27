@@ -25,7 +25,7 @@
 #'
 #' @references
 #' Levin, M. L. (1953). The occurrence of lung cancer in man.
-#' \emph{Acta Unio Internationalis Contra Cancrum}, 9, 531-541.
+#' \emph{Acta Unio Internationalis Contra Cancrum}, 9(3), 531-541.
 #'
 #' Miettinen, O. S. (1974). Proportion of disease caused or prevented by a
 #' given exposure, trait or intervention.
