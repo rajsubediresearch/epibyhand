@@ -1,0 +1,23 @@
+Package: epibyhand
+Type: Package
+Title: Worked Derivations for Classical Epidemiological Measures
+Version: 0.0.0.9000
+Authors@R: person("Raj", "Subedi", email = "rajsubediresearch@gmail.com",
+    role = c("aut", "cre"))
+Description: Computes classical epidemiological measures and returns the
+    complete worked derivation alongside the result: every intermediate
+    quantity, the formula, and the formula with the observed numbers
+    substituted in. Intended for teaching, for checking hand calculations,
+    and for generating worked solutions in course materials. Scope is
+    deliberately limited to methods a student can compute by hand on paper.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 3.5.0)
+Imports:
+    stats
+Suggests: testthat (>= 3.0.0), knitr, rmarkdown
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+URL: https://github.com/rajsubediresearch/epibyhand
+BugReports: https://github.com/rajsubediresearch/epibyhand/issues
