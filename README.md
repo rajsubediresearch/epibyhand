@@ -129,6 +129,7 @@ leaves the choice to you.
 | `risk_ratio()` | Risk ratio, with log-scale interval |
 | `odds_ratio()` | Odds ratio, Woolf interval |
 | `risk_difference()` | Risk difference, number needed to expose |
+| `attributable_fraction()` | AFe and PAF, with all three PAF formulas shown to agree |
 | `mh_odds_ratio()` | Mantel-Haenszel OR, Robins-Breslow-Greenland interval |
 | `mh_risk_ratio()` | Mantel-Haenszel RR, Greenland-Robins interval |
 | `homogeneity()` | Breslow-Day test, Tarone corrected |
