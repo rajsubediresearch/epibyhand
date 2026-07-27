@@ -22,3 +22,7 @@ Odds ratio with worked derivation
 \examples{
 odds_ratio(epi2x2(36, 14, 30, 25))
 }
+\references{
+Woolf, B. (1955). On estimating the relation between blood group and
+disease. \emph{Annals of Human Genetics}, 19, 251-253.
+}

@@ -108,6 +108,10 @@ risk_ratio <- function(x, ..., conf_level = 0.95) {
 #' @inheritParams risk_ratio
 #' @return An `epibyhand_derivation`.
 #'
+#' @references
+#' Woolf, B. (1955). On estimating the relation between blood group and
+#' disease. \emph{Annals of Human Genetics}, 19, 251-253.
+#'
 #' @examples
 #' odds_ratio(epi2x2(36, 14, 30, 25))
 #' @export

@@ -39,3 +39,11 @@ written three ways, which is easier to believe once seen numerically.
 attributable_fraction(epi2x2(36, 14, 30, 25))
 attributable_fraction(epi2x2(36, 14, 30, 25), among = "population")
 }
+\references{
+Levin, M. L. (1953). The occurrence of lung cancer in man.
+\emph{Acta Unio Internationalis Contra Cancrum}, 9, 531-541.
+
+Miettinen, O. S. (1974). Proportion of disease caused or prevented by a
+given exposure, trait or intervention.
+\emph{American Journal of Epidemiology}, 99(5), 325-332.
+}

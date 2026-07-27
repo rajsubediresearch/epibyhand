@@ -23,6 +23,14 @@
 #'
 #' @return An `epibyhand_derivation`.
 #'
+#' @references
+#' Levin, M. L. (1953). The occurrence of lung cancer in man.
+#' \emph{Acta Unio Internationalis Contra Cancrum}, 9, 531-541.
+#'
+#' Miettinen, O. S. (1974). Proportion of disease caused or prevented by a
+#' given exposure, trait or intervention.
+#' \emph{American Journal of Epidemiology}, 99(5), 325-332.
+#'
 #' @examples
 #' attributable_fraction(epi2x2(36, 14, 30, 25))
 #' attributable_fraction(epi2x2(36, 14, 30, 25), among = "population")

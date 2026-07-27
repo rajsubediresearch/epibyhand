@@ -10,6 +10,10 @@ Description: Computes classical epidemiological measures and returns the
     substituted in. Intended for teaching, for checking hand calculations,
     and for generating worked solutions in course materials. Scope is
     deliberately limited to methods a student can compute by hand on paper.
+    Methods follow Mantel and Haenszel (1959) <doi:10.1093/jnci/22.4.719>,
+    Greenland and Robins (1985, Biometrics 41, 55-68), Robins, Breslow and
+    Greenland (1986, Biometrics 42, 311-323), and Breslow and Day (1980,
+    IARC Scientific Publications No. 32).
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends: R (>= 3.5.0)
@@ -17,7 +21,6 @@ Imports:
     stats
 Suggests: testthat (>= 3.0.0), knitr, rmarkdown
 Config/testthat/edition: 3
-VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 URL: https://github.com/rajsubediresearch/epibyhand

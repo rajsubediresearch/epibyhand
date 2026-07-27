@@ -30,3 +30,13 @@ s <- epi_strata(c(10, 20, 5, 40), c(30, 15, 20, 25),
                 labels = c("Men", "Women"))
 mh_odds_ratio(s)
 }
+\references{
+Mantel, N. and Haenszel, W. (1959). Statistical aspects of the analysis
+of data from retrospective studies of disease.
+\emph{Journal of the National Cancer Institute}, 22(4), 719-748.
+\doi{10.1093/jnci/22.4.719}
+
+Robins, J., Breslow, N. and Greenland, S. (1986). Estimators of the
+Mantel-Haenszel variance consistent in both sparse data and large-strata
+limiting models. \emph{Biometrics}, 42(2), 311-323.
+}

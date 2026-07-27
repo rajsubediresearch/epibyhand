@@ -22,3 +22,7 @@ Mantel-Haenszel risk ratio with worked derivation
 \examples{
 mh_risk_ratio(epi_strata(c(10, 20, 5, 40), c(30, 15, 20, 25)))
 }
+\references{
+Greenland, S. and Robins, J. M. (1985). Estimation of a common effect
+parameter from sparse follow-up data. \emph{Biometrics}, 41, 55-68.
+}

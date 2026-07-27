@@ -29,3 +29,11 @@ slightly too large.
 \examples{
 homogeneity(epi_strata(c(10, 20, 5, 40), c(30, 15, 20, 25)))
 }
+\references{
+Breslow, N. E. and Day, N. E. (1980). \emph{Statistical Methods in Cancer
+Research, Volume I: The Analysis of Case-Control Studies}. IARC Scientific
+Publications No. 32, Lyon.
+
+Tarone, R. E. (1985). On heterogeneity tests based on efficient scores.
+\emph{Biometrika}, 72(1), 91-95.
+}

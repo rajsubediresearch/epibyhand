@@ -32,6 +32,16 @@ stratum_frame <- function(x) {
 #'
 #' @return An `epibyhand_derivation`.
 #'
+#' @references
+#' Mantel, N. and Haenszel, W. (1959). Statistical aspects of the analysis
+#' of data from retrospective studies of disease.
+#' \emph{Journal of the National Cancer Institute}, 22(4), 719-748.
+#' \doi{10.1093/jnci/22.4.719}
+#'
+#' Robins, J., Breslow, N. and Greenland, S. (1986). Estimators of the
+#' Mantel-Haenszel variance consistent in both sparse data and large-strata
+#' limiting models. \emph{Biometrics}, 42(2), 311-323.
+#'
 #' @examples
 #' s <- epi_strata(c(10, 20, 5, 40), c(30, 15, 20, 25),
 #'                 labels = c("Men", "Women"))
@@ -175,6 +185,10 @@ mh_odds_ratio <- function(x, ..., conf_level = 0.95) {
 #'
 #' @inheritParams mh_odds_ratio
 #' @return An `epibyhand_derivation`.
+#' @references
+#' Greenland, S. and Robins, J. M. (1985). Estimation of a common effect
+#' parameter from sparse follow-up data. \emph{Biometrics}, 41, 55-68.
+#'
 #' @examples
 #' mh_risk_ratio(epi_strata(c(10, 20, 5, 40), c(30, 15, 20, 25)))
 #' @export
@@ -299,6 +313,14 @@ mh_risk_ratio <- function(x, ..., conf_level = 0.95) {
 #' @param tarone Apply Tarone's correction. Defaults to `TRUE`.
 #'
 #' @return An `epibyhand_derivation`.
+#'
+#' @references
+#' Breslow, N. E. and Day, N. E. (1980). \emph{Statistical Methods in Cancer
+#' Research, Volume I: The Analysis of Case-Control Studies}. IARC Scientific
+#' Publications No. 32, Lyon.
+#'
+#' Tarone, R. E. (1985). On heterogeneity tests based on efficient scores.
+#' \emph{Biometrika}, 72(1), 91-95.
 #'
 #' @examples
 #' homogeneity(epi_strata(c(10, 20, 5, 40), c(30, 15, 20, 25)))
