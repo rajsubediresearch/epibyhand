@@ -1,6 +1,7 @@
 # epibyhand
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/epibyhand)](https://CRAN.R-project.org/package=epibyhand)
 [![R-CMD-check](https://github.com/rajsubediresearch/epibyhand/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rajsubediresearch/epibyhand/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -26,9 +27,21 @@ The package imports `stats` and nothing else.
 ## Installation
 
 ```r
+install.packages("epibyhand")
+```
+
+Development version:
+
+```r
 # install.packages("remotes")
 remotes::install_github("rajsubediresearch/epibyhand")
 ```
+
+## Tutorial
+
+An interactive tutorial covering every function, with exercises and worked
+answers, runs in the browser with nothing to install:
+[rajsubediresearch/epibyhand-tutorial](https://github.com/rajsubediresearch/epibyhand-tutorial)
 
 ## Usage
 
@@ -110,6 +123,8 @@ options(epibyhand.verbose = 2)   # full worked solution (default)
 options(epibyhand.digits = 3)
 ```
 
+Both can be overridden for a single call: `print(d, verbose = 1, digits = 2)`.
+
 `steps_table()` returns the derivation as a data frame, for building answer
 keys or rendering the working in a format this package does not provide.
 
@@ -119,15 +134,22 @@ One S3 class, `epibyhand_derivation`, carries the result and the steps that
 produced it. All display logic lives in its print method, so adding a measure
 means writing arithmetic and steps — never writing display code.
 
+`derivation()` and `derivation_step()` are exported, so a measure the package
+does not cover can be added in user code and will print, tabulate, and work
+with `check_work()` exactly like a built-in one.
+
 Silent corrections are avoided on principle. A zero cell produces an
 explanation of what a continuity correction would do to the estimate, and
 leaves the choice to you.
 
-## Currently implemented
+## Reference
 
-| Function | Measure |
+| Function | Purpose |
 |---|---|
-| `risk_ratio()` | Risk ratio, with log-scale interval |
+| `epi2x2()` | Build a 2 x 2 table from counts or a matrix |
+| `epi_strata()` | Build stratified tables from counts, a list, or an array |
+| `collapse_strata()` | Add strata cell by cell to recover the crude table |
+| `risk_ratio()` | Risk ratio, log-scale interval |
 | `odds_ratio()` | Odds ratio, Woolf interval |
 | `risk_difference()` | Risk difference, number needed to expose |
 | `attributable_fraction()` | AFe and PAF, with all three PAF formulas shown to agree |
@@ -135,6 +157,15 @@ leaves the choice to you.
 | `mh_risk_ratio()` | Mantel-Haenszel RR, Greenland-Robins interval |
 | `homogeneity()` | Breslow-Day test, Tarone corrected |
 | `check_work()` | Locate where a hand calculation diverged |
+| `steps_table()` | Return a derivation as a data frame |
+| `estimate()`, `confint()` | Extract the point estimate and interval |
+| `derivation()`, `derivation_step()` | Build your own measure |
+
+## Citation
+
+```r
+citation("epibyhand")
+```
 
 ## License
 
