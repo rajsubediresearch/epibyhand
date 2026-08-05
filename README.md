@@ -3,6 +3,7 @@
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/epibyhand)](https://CRAN.R-project.org/package=epibyhand)
 [![R-CMD-check](https://github.com/rajsubediresearch/epibyhand/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rajsubediresearch/epibyhand/actions/workflows/R-CMD-check.yaml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21808842.svg)](https://doi.org/10.5281/zenodo.21808842)
 <!-- badges: end -->
 
 Classical epidemiological measures that show their work.

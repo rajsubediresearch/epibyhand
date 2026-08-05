@@ -3,6 +3,14 @@ message: "If you use this software, please cite it as below."
 type: software
 title: "epibyhand: Worked Derivations for Classical Epidemiological Measures"
 version: 0.1.0
+doi: 10.5281/zenodo.21808842
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21808842
+    description: Concept DOI, always resolves to the latest version
+  - type: doi
+    value: 10.5281/zenodo.21808843
+    description: Version DOI for v0.1.0
 abstract: >-
   Computes classical epidemiological measures and returns the complete worked
   derivation alongside the result: every intermediate quantity, the formula,

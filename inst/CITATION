@@ -6,5 +6,6 @@ bibentry(
   author   = person(given = "Raj", family = "Subedi"),
   year     = "2026",
   note     = sprintf("R package version %s", meta$Version),
+  doi      = "10.5281/zenodo.21808842",
   url      = "https://github.com/rajsubediresearch/epibyhand"
 )
